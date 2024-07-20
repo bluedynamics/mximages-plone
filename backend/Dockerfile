@@ -54,7 +54,6 @@ USER plone
 COPY --chown=plone:plone ./backend /site
 WORKDIR /site
 RUN \
-  # sed -i 's/\[test\]/\[production\]/g' /site/requirements.txt &&\
   ls -la &&\
   make packages cookiecutter &&\
   wget -O $ZOPE_TEMPLATE https://github.com/plone/cookiecutter-zope-instance/archive/refs/tags/${COOKIECUTTER_ZOPE_INSTANCE_VERSION}.zip &&\
