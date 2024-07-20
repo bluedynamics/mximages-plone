@@ -12,10 +12,10 @@ jobs:
     strategy:
       matrix:
         include:
-        - image: ghcr.io/bluedynamics/mximages-plone/mx-plone-frontend
-          dockerfile: ./frontend/Dockerfile
         - image: ghcr.io/bluedynamics/mximages-plone/mx-plone-backend
           dockerfile: ./backend/Dockerfile
+        - image: ghcr.io/bluedynamics/mximages-plone/mx-plone-frontend
+          dockerfile: ./frontend/Dockerfile
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,7 +45,7 @@ jobs:
       - name: Build and push Backend
         uses: docker/build-push-action@v5
         with:
-          context: "{{defaultContext}}:container"
+          context: "."
           file: ${{ matrix.dockerfile }}
           platforms: linux/amd64,linux/arm64
           build-args: |
