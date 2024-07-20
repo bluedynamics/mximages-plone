@@ -13,9 +13,9 @@ jobs:
       matrix:
         include:
         - image: ghcr.io/bluedynamics/mximages-plone/mx-plone-frontend
-          dockerfile: frontend/Dockerfile
+          dockerfile: ./frontend/Dockerfile
         - image: ghcr.io/bluedynamics/mximages-plone/mx-plone-backend
-          dockerfile: backend/Dockerfile
+          dockerfile: ./backend/Dockerfile
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -20,7 +20,7 @@ RUN \
 USER plone
 
 # Add local code
-COPY --chown=plone:plone . /app
+COPY --chown=plone:plone ./frontend /app
 WORKDIR /app
 
 # Install and build application
