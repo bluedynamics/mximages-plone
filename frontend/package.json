@@ -2,7 +2,7 @@
   "name": "mximage-frontend-dev",
   "version": "1.0.0-alpha.0",
   "description": "A new project using Plone 6.",
-  "author": "BlueDynmaics Alliance",
+  "author": "BlueDynamics Alliance",
   "homepage": "https://github.com/bluedynamics/mximages-plone/tree/main/frontend",
   "license": "MIT",
   "keywords": [
@@ -34,7 +34,8 @@
   },
   "dependencies": {
     "@plone/registry": "workspace:*",
-    "@plone/volto": "workspace:*"
+    "@plone/volto": "workspace:*",
+    "@kitconcept/volto-light-theme": "^5.0.0"
   },
   "devDependencies": {
     "mrs-developer": "^2.2.0"

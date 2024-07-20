@@ -1,8 +1,5 @@
-const addons = [
-    '@kitconcept/volto-light-theme'
-];
-const theme = 'volto-light-theme';
+const addons = [];
+// const theme = 'volto-light-theme';
 module.exports = {
-  addons,
-  theme,
+  addons
 };
