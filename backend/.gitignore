@@ -19,7 +19,7 @@ node_modules/
 
 # venv related
 pyvenv.cfg
-.venv
+.venv/
 
 # mxdev
 .mxmake

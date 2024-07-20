@@ -1,0 +1,10 @@
+frontend/.storybook
+frontend/*.log
+frontend/**/node_modules
+frontend/addons
+frontend/build
+frontend/cache
+frontend/core
+frontend/cypress
+frontend/node_modules
+Makefile

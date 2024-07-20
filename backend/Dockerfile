@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
 FROM python:3.12-slim-bookworm
 
-LABEL maintainer="GeoSphere Austria <kontakt@geosphere.at>" \
-      org.label-schema.name="kvoltoweb-backend" \
-      org.label-schema.description="kvoltoweb backend image." \
-      org.label-schema.vendor="GeoSphere Austria"
+LABEL maintainer="Jens Klein <jk@kleinundpartner.at>" \
+      org.label-schema.name="mx-plone-image-backend" \
+      org.label-schema.description="BlueDynamics MX Plone Image Backend" \
+      org.label-schema.vendor="BlueDynamics Alliance"
 
 # Python optimization for OCI images: no bytecode writing
 ENV PYTHONDONTWRITEBYTECODE 1
