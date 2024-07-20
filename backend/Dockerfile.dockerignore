@@ -1,0 +1,7 @@
+# .dockerignore
+backend/.mxmake
+backend/.tox
+backend/.venv
+backend/generated-code-examples
+backend/instance
+backend/tests
