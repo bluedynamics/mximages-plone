@@ -3,10 +3,10 @@ set -e
 
 echo "▶️ Plone OCI-Image entrypoint entered"
 
-echo "⚙️ fetch configuration from environment"
+echo "🔀 get settings from environment variables"
 /venv/bin/python /site/deployment/transform_from_environment.py -o $ZOPE_CONFIGURATION_FILE
 
-echo "⚙ generate instance from configuration"
+echo "🔧 generate Plone (Zope) instance configuration"
 make zope-instance
 
 if [[ "$1" == "start" ]]; then
