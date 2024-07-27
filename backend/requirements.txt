@@ -1,4 +1,4 @@
 -c constraints.txt
 Plone
 plone.distribution
-relstorage
+relstorage[postgresql]
