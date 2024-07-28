@@ -12,6 +12,9 @@ make zope-instance
 if [[ "$1" == "start" ]]; then
     echo "🌐 running Plone"
     make zope-start
+elif [[ "$1" == "create" ]]; then
+    echo "✨ creating new Plone site"
+    make plone-site-create
 elif [[ "$1" == "export" ]]; then
     echo "📤 exporting to filestorage"
     /venv/bin/zodbconvert --clear /site/instance/etc/relstorage-export.conf
