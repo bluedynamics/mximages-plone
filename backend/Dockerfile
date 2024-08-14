@@ -31,21 +31,27 @@ ENV INSTANCE_debug_mode "false"
 # prepare and cleanup
 RUN \
   useradd --system -m -d /app -U -u 500 plone &&\
-  apt-get -y update &&\
+  apt-get update &&\
   apt-get -y upgrade &&\
-  buildDeps="build-essential make busybox ca-certificates curl git gosu libbz2-dev libffi-dev libjpeg62-turbo-dev libmagic1 libldap2-dev libopenjp2-7-dev libpcre3-dev libpq-dev libsasl2-dev libssl-dev libtiff5-dev libxml2-dev libxslt1-dev wget zlib1g-dev"  &&\
-  apt-get -y install --no-install-recommends $buildDeps &&\
+  buildDeps="make busybox ca-certificates curl git gosu libmagic1 wget" &&\
+  apt-get install -y --no-install-recommends $buildDeps &&\
   busybox --install -s &&\
-  apt-get -y clean &&\
   # global uv
   pip install uv &&\
   # create venv for plone
   uv venv /venv &&\
+  # install psycopg2, needs buildessential libpq-dev
+  psycopg2Deps="build-essential libpq-dev" &&\
+  apt-get install -y --no-install-recommends $psycopg2Deps &&\
+  uv pip install -p /venv/bin/python psycopg2 &&\
+  apt-get remove -y $psycopg2Deps &&\
+  apt-get autoremove -y &&\
   # create a data folder
   mkdir /instance &&\
   # give permissions
   chown -R plone:plone /venv /instance &&\
   # cleanup
+  apt-get -y clean &&\
   pip cache purge
 
 USER plone
@@ -54,9 +60,10 @@ USER plone
 COPY --chown=plone:plone ./backend /site
 WORKDIR /site
 RUN \
+  sed -i 's/\[test\]/\[production\]/g' /site/requirements.txt &&\
   ls -la &&\
   make packages cookiecutter &&\
-  mkdir -p /site/deployment &&\
+  mkdir /site/deployment &&\
   wget -O $ZOPE_TEMPLATE https://github.com/plone/cookiecutter-zope-instance/archive/refs/tags/${COOKIECUTTER_ZOPE_INSTANCE_VERSION}.zip &&\
   wget -O deployment/transform_from_environment.py https://raw.githubusercontent.com/plone/cookiecutter-zope-instance/${COOKIECUTTER_ZOPE_INSTANCE_VERSION}/helpers/transform_from_environment.py &&\
   chmod u+x deployment/transform_from_environment.py &&\
