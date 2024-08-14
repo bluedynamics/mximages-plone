@@ -43,7 +43,7 @@ RUN \
   # install psycopg2, needs buildessential libpq-dev
   psycopg2RuntimeDeps="libpq" &&\
   psycopg2BuildDeps="build-essential libpq-dev" &&\
-  apt-get install -y --no-install-recommends psycopg2RuntimeDeps $psycopg2BuildDeps &&\
+  apt-get install -y --no-install-recommends $psycopg2RuntimeDeps $psycopg2BuildDeps &&\
   uv pip install -p /venv/bin/python psycopg2 &&\
   apt-get remove -y $psycopg2BuildDeps &&\
   apt-get autoremove -y &&\
