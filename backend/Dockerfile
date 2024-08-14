@@ -41,7 +41,7 @@ RUN \
   # create venv for plone
   uv venv /venv &&\
   # install psycopg2, needs buildessential libpq-dev
-  psycopg2RuntimeDeps="libpq" &&\
+  psycopg2RuntimeDeps="libpq5" &&\
   psycopg2BuildDeps="build-essential libpq-dev" &&\
   apt-get install -y --no-install-recommends $psycopg2RuntimeDeps $psycopg2BuildDeps &&\
   uv pip install -p /venv/bin/python psycopg2 &&\
