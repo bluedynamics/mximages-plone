@@ -24,12 +24,11 @@ COPY --chown=plone:plone ./frontend /app
 WORKDIR /app
 
 # Install and build application
-RUN \
-  corepack install &&\
-	pnpm dlx mrs-developer missdev --hard --no-config --fetch-https &&\
-  pnpm install &&\
-  pnpm build &&\
-  echo "Y" | pnpm prune --prod --no-optional &&\
+RUN corepack install
+RUN pnpm dlx mrs-developer missdev --hard --no-config --fetch-https
+RUN pnpm install
+RUN pnpm build 
+RUN echo "Y" | pnpm prune --prod --no-optional &&\
   rm -rf .cache .local/share/pnpm/store &&\
   find . -name .git -exec rm -rfv {} +
 
