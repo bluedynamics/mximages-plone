@@ -15,7 +15,8 @@ RUN \
   apt-get install -y --no-install-recommends $buildDeps &&\
   busybox --install -s &&\
   apt-get -y clean &&\
-  corepack enable
+  corepack enable &&\
+  corepack use pnpm@latest
 
 USER plone
 
